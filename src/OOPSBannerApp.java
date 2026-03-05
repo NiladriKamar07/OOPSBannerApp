@@ -2,20 +2,55 @@ public class OOPSBannerApp {
 
     public static void main(String[] args) {
 
-        // Declare and initialize array in single statement
-        String[] banner = {
-            String.join("   ", "OOOO", "OOOO", "PPPP", "SSSS"),
-            String.join("   ", "O  O", "O  O", "P   P", "S"),
-            String.join("   ", "O  O", "O  O", "PPPP", "SSSS"),
-            String.join("   ", "O  O", "O  O", "P", "S"),
-            String.join("   ", "OOOO", "OOOO", "P", "SSSS"),
-            String.join("   ", "O     O", "O     O", "P", "S"),
-            String.join("   ", "OOOO   ", "OOOO   ", "P", "SSSS")
-        };
+        String[] o = buildO();
+        String[] p = buildP();
+        String[] s = buildS();
 
-        // Enhanced for-loop to print
+        // Banner array
+        String[] banner = new String[o.length];
+
+        // Combine letters line by line
+        for (int i = 0; i < o.length; i++) {
+            banner[i] = String.join("   ",
+                    o[i], o[i], p[i], s[i]);
+        }
+
+        // Print banner
         for (String line : banner) {
             System.out.println(line);
         }
+    }
+
+    // Static method for letter O
+    public static String[] buildO() {
+        return new String[]{
+                "OOOO",
+                "O  O",
+                "O  O",
+                "O  O",
+                "OOOO"
+        };
+    }
+
+    // Static method for letter P
+    public static String[] buildP() {
+        return new String[]{
+                "PPPP",
+                "P   P",
+                "PPPP",
+                "P",
+                "P"
+        };
+    }
+
+    // Static method for letter S
+    public static String[] buildS() {
+        return new String[]{
+                "SSSS",
+                "S",
+                "SSSS",
+                "   S",
+                "SSSS"
+        };
     }
 }
