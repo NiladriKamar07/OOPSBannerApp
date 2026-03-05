@@ -7,10 +7,49 @@ public class OOPSBannerApp {
 
         String word = "OOPS";
 
-        // Get character pattern map
-        Map<Character, CharacterPatternMap> patternMap = CharacterPatternMap.initializePatterns();
+        // Initialize pattern map
+        Map<Character, String[]> patternMap = initializePatterns();
 
-        int height = 5; // Each character pattern has 5 lines
+        // Render banner
+        renderBanner(word, patternMap);
+    }
+
+    // Initialize all character patterns
+    public static Map<Character, String[]> initializePatterns() {
+
+        Map<Character, String[]> map = new HashMap<>();
+
+        map.put('O', new String[]{
+                "OOOO",
+                "O  O",
+                "O  O",
+                "O  O",
+                "OOOO"
+        });
+
+        map.put('P', new String[]{
+                "PPPP",
+                "P   P",
+                "PPPP",
+                "P",
+                "P"
+        });
+
+        map.put('S', new String[]{
+                "SSSS",
+                "S",
+                "SSSS",
+                "   S",
+                "SSSS"
+        });
+
+        return map;
+    }
+
+    // Render banner function
+    public static void renderBanner(String word, Map<Character, String[]> patternMap) {
+
+        int height = 5;
 
         for (int i = 0; i < height; i++) {
 
@@ -18,62 +57,14 @@ public class OOPSBannerApp {
 
             for (char ch : word.toCharArray()) {
 
-                CharacterPatternMap pattern = patternMap.get(ch);
+                String[] pattern = patternMap.get(ch);
 
                 if (pattern != null) {
-                    lineBuilder.append(pattern.getPattern()[i]).append("   ");
+                    lineBuilder.append(pattern[i]).append("   ");
                 }
             }
 
             System.out.println(lineBuilder.toString());
-        }
-    }
-
-    // Static Inner Class
-    static class CharacterPatternMap {
-
-        private char character;
-        private String[] pattern;
-
-        public CharacterPatternMap(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
-
-        public String[] getPattern() {
-            return pattern;
-        }
-
-        // Initialize all supported characters
-        public static Map<Character, CharacterPatternMap> initializePatterns() {
-
-            Map<Character, CharacterPatternMap> map = new HashMap<>();
-
-            map.put('O', new CharacterPatternMap('O', new String[]{
-                    "OOOO",
-                    "O  O",
-                    "O  O",
-                    "O  O",
-                    "OOOO"
-            }));
-
-            map.put('P', new CharacterPatternMap('P', new String[]{
-                    "PPPP",
-                    "P   P",
-                    "PPPP",
-                    "P",
-                    "P"
-            }));
-
-            map.put('S', new CharacterPatternMap('S', new String[]{
-                    "SSSS",
-                    "S",
-                    "SSSS",
-                    "   S",
-                    "SSSS"
-            }));
-
-            return map;
         }
     }
 }
